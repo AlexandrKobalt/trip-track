@@ -4,7 +4,7 @@
 // - protoc             v5.26.1
 // source: fileserver_service.proto
 
-package proto
+package fileserver
 
 import (
 	context "context"
