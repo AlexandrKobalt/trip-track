@@ -4,7 +4,7 @@ package fileserver;
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/AlexandrKobalt/trip-track/backend/proto/file-server";
+option go_package = "github.com/AlexandrKobalt/trip-track/backend/proto/fileserver";
 
 service File {
     rpc Upload(UploadRequest) returns (google.protobuf.Empty);
