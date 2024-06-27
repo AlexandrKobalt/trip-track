@@ -5,8 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/AlexandrKobalt/trip-track/backend/pkg/duration"
-	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
+	"github.com/AlexandrKobalt/trip-track/backend/file-server/pkg/duration"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 )
@@ -37,7 +36,6 @@ func New(cfg Config) (server *Server, err error) {
 			MaxConnectionAge:  cfg.MaxConnectionAge.Duration,
 			Time:              cfg.Time.Duration,
 		}),
-		grpc.StatsHandler(otelgrpc.NewServerHandler()),
 	)
 
 	return &Server{

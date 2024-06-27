@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package fileserver;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/AlexandrKobalt/trip-track/backend/file-server/proto";
+
+service File {
+    rpc Upload(UploadRequest) returns (google.protobuf.Empty);
+    rpc GetURL(GetURLRequest) returns (GetURLResponse);
+}
+
+message UploadRequest {
+    bytes file = 1;
+    string key = 2;
+}
+
+message GetURLRequest {
+    string key = 1;
+}
+
+message GetURLResponse {
+    string url = 1;
+}
