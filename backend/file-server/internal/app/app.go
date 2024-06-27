@@ -11,7 +11,7 @@ import (
 	"github.com/AlexandrKobalt/trip-track/backend/file-server/config"
 	grpcserver "github.com/AlexandrKobalt/trip-track/backend/file-server/pkg/grpc/server"
 	"github.com/AlexandrKobalt/trip-track/backend/file-server/pkg/lifecycle"
-	"github.com/AlexandrKobalt/trip-track/backend/file-server/proto"
+	fileserverproto "github.com/AlexandrKobalt/trip-track/backend/proto/fileserver"
 
 	filedelivery "github.com/AlexandrKobalt/trip-track/backend/file-server/internal/file/delivery/grpc"
 	fileservice "github.com/AlexandrKobalt/trip-track/backend/file-server/internal/file/service"
@@ -50,7 +50,7 @@ func (a *App) Start(ctx context.Context) error {
 	fileService := fileservice.New(a.cfg.Service.File)
 	fileDelivery := filedelivery.New(fileService)
 
-	proto.RegisterFileServer(grpcServer.App, fileDelivery)
+	fileserverproto.RegisterFileServer(grpcServer.App, fileDelivery)
 
 	a.cmps = append(
 		a.cmps,

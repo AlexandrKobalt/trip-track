@@ -1,7 +1,7 @@
 package service
 
 import (
-	fileserverproto "github.com/AlexandrKobalt/trip-track/backend/file-server/proto"
+	fileserverproto "github.com/AlexandrKobalt/trip-track/backend/proto/fileserver"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 

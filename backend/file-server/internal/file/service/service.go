@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	fileserverproto "github.com/AlexandrKobalt/trip-track/backend/file-server/proto"
+	fileserverproto "github.com/AlexandrKobalt/trip-track/backend/proto/fileserver"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
@@ -26,8 +26,8 @@ func New(cfg Config) IService {
 func (s *service) Upload(
 	request *fileserverproto.UploadRequest,
 ) (response *emptypb.Empty, err error) {
-	id := uuid.New().String()
-	filePath := filepath.Join(s.cfg.UploadDirectory, id)
+	key := uuid.New().String()
+	filePath := filepath.Join(s.cfg.UploadDirectory, key)
 
 	out, err := os.Create(filePath)
 	if err != nil {
