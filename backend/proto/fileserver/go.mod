@@ -1,4 +1,4 @@
-module github.com/AlexandrKobalt/trip-track/backend/proto/file-server
+module github.com/AlexandrKobalt/trip-track/backend/proto/fileserver
 
 go 1.22.1
 
