@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -28,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileClient interface {
-	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error)
 	GetURL(ctx context.Context, in *GetURLRequest, opts ...grpc.CallOption) (*GetURLResponse, error)
 }
 
@@ -40,8 +39,8 @@ func NewFileClient(cc grpc.ClientConnInterface) FileClient {
 	return &fileClient{cc}
 }
 
-func (c *fileClient) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
+func (c *fileClient) Upload(ctx context.Context, in *UploadRequest, opts ...grpc.CallOption) (*UploadResponse, error) {
+	out := new(UploadResponse)
 	err := c.cc.Invoke(ctx, File_Upload_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,7 +61,7 @@ func (c *fileClient) GetURL(ctx context.Context, in *GetURLRequest, opts ...grpc
 // All implementations must embed UnimplementedFileServer
 // for forward compatibility
 type FileServer interface {
-	Upload(context.Context, *UploadRequest) (*emptypb.Empty, error)
+	Upload(context.Context, *UploadRequest) (*UploadResponse, error)
 	GetURL(context.Context, *GetURLRequest) (*GetURLResponse, error)
 	mustEmbedUnimplementedFileServer()
 }
@@ -71,7 +70,7 @@ type FileServer interface {
 type UnimplementedFileServer struct {
 }
 
-func (UnimplementedFileServer) Upload(context.Context, *UploadRequest) (*emptypb.Empty, error) {
+func (UnimplementedFileServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Upload not implemented")
 }
 func (UnimplementedFileServer) GetURL(context.Context, *GetURLRequest) (*GetURLResponse, error) {
