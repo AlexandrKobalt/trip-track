@@ -1,8 +1,18 @@
 package service
 
-import "github.com/AlexandrKobalt/trip-track/backend/web-server/internal/file/models"
+import (
+	"context"
+
+	"github.com/AlexandrKobalt/trip-track/backend/web-server/internal/file/models"
+)
 
 type IService interface {
-	Upload(params models.UploadParams) (err error)
-	GetURL(params models.GetURLParams) (result models.GetURLResult, err error)
+	Upload(
+		ctx context.Context,
+		params models.UploadParams,
+	) (result models.UploadResult, err error)
+	GetURL(
+		ctx context.Context,
+		params models.GetURLParams,
+	) (result models.GetURLResult, err error)
 }

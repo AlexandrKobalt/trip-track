@@ -23,12 +23,12 @@ func (h *handler) Upload() fiber.Handler {
 
 		params := models.UploadParams{File: fileHeader}
 
-		err = h.service.Upload(params)
+		result, err := h.service.Upload(c.Context(), params)
 		if err != nil {
 			return err
 		}
 
-		return c.SendStatus(fiber.StatusOK)
+		return c.JSON(result)
 	}
 }
 
@@ -38,7 +38,7 @@ func (h *handler) GetURL() fiber.Handler {
 			Key: c.Query("key"),
 		}
 
-		result, err := h.service.GetURL(params)
+		result, err := h.service.GetURL(c.Context(), params)
 		if err != nil {
 			return err
 		}
